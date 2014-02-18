@@ -1,0 +1,50 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #2f313d;
+  background: #2f313d;
+}
+html .wrapper,
+body .wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+html .wrapper .column1,
+body .wrapper .column1 {
+  width: 290px;
+  margin: 10px 5px;
+  padding: 10px;
+  float: left;
+  background: #fec56c;
+  border-radius: 5px;
+}
+html .wrapper .column1 .option,
+body .wrapper .column1 .option {
+  margin: 5px 0;
+}
+html .wrapper .column1 .option input,
+body .wrapper .column1 .option input {
+  width: 100%;
+}
+html .wrapper .column2,
+body .wrapper .column2 {
+  width: 670px;
+  margin: 10px 5px;
+  float: left;
+  background: #d28365;
+  border-radius: 5px;
+}
+html .wrapper .column2 .board .card,
+body .wrapper .column2 .board .card {
+  width: 30px;
+  height: 50px;
+  margin: 10px;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  background: #fec56c;
+}
+.clear {
+  clear: both;
+}

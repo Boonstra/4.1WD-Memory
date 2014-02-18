@@ -1,0 +1,92 @@
+@black: #2f313d;
+@yellow: #fec56c;
+@red: #d28365;
+@green: #539d84;
+
+@white     : #fff;
+@light-grey: #eee;
+@grey      : #ccc;
+
+html,
+body
+{
+  margin: 0;
+  padding: 0;
+
+  color: @black;
+
+  background: @black;
+
+  .wrapper
+  {
+    width: 1000px;
+
+    margin: 0 auto;
+
+    .column1
+    {
+      width: 290px;
+
+      margin: 10px 5px;
+      padding: 10px;
+
+      float: left;
+
+      background: @yellow;
+
+      .rounded-corners;
+
+      .option
+      {
+        margin: 5px 0;
+
+        input
+        {
+          width: 100%;
+        }
+      }
+    }
+
+    .column2
+    {
+      width: 670px;
+
+      margin: 10px 5px;
+
+      float: left;
+
+      background: @red;
+
+      .rounded-corners;
+
+      .board
+      {
+        .card
+        {
+          width: 30px;
+          height: 50px;
+
+          margin: 10px;
+
+          float: left;
+
+          text-align: center;
+          vertical-align: middle;
+
+          background: @yellow;
+        }
+      }
+    }
+  }
+}
+
+.clear
+{
+  clear: both;
+}
+
+// Mixins
+.rounded-corners(@radius: 5px;)
+{
+  border-radius: @radius;
+}
