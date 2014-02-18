@@ -10,7 +10,7 @@ memory_script = function()
 	 */
 	self.init = function()
 	{
-		self.$newGameButton = $$('.new-game-button')
+		self.$newGameButton = $$('.new-game-button');
 
 		self.$cardViewTimeSlider      = $$('.card-view-time-slider');
 		self.$cardViewTimeSliderValue = $$('.card-view-time-slider-value');
@@ -19,11 +19,10 @@ memory_script = function()
 
 		self.prepareBoard();
 
-
-
 		// Listeners
-//		self.
-		self.$board.addEvent("click:relay(.card)", function(){ self.handleCardClick(); });
+		self.$newGameButton.addEvent('click', function(event){ event.preventDefault(); self.prepareBoard(); });
+
+		self.$board.addEvent('click:relay(.card-container)', function(){ self.handleCardClick(); });
 	};
 
 	/**
@@ -31,21 +30,29 @@ memory_script = function()
 	 */
 	self.prepareBoard = function()
 	{
-		var cellX = 0,
-			cellY = 0;
+		var $cardContainer,
+			$cardFlipper,
+			$cardFront,
+			$cardBack,
+			cellX,
+			cellY;
 
 		self.$board.set('html', '');
 
-		for (cellY; cellY < self.cellCountY; cellY++)
+		for (cellY = 0; cellY < self.cellCountY; cellY++)
 		{
-			cellX = 0;
-
-			for (cellX; cellX < self.cellCountX; cellX++)
+			for (cellX = 0; cellX < self.cellCountX; cellX++)
 			{
-				self.$board.adopt(new Element('div', {
-					'class': 'card',
-					'html' : '*'
-				}));
+				$cardContainer = new Element('div', { 'class': 'card-container' });
+				$cardFlipper   = new Element('div', { 'class': 'card-flipper' });
+				$cardFront     = new Element('div', { 'class': 'card-front', 'html': 'Front' });
+				$cardBack      = new Element('div', { 'class': 'card-back', 'html': 'Back' });
+
+				$cardFlipper.adopt($cardFront, $cardBack);
+
+				$cardContainer.adopt($cardFlipper);
+
+				self.$board.adopt($cardContainer);
 			}
 
 			self.$board.adopt(new Element('div', { 'class': 'clear' }));
@@ -58,6 +65,8 @@ memory_script = function()
 	self.handleCardClick = function()
 	{
 
+
+		console.log('handling card click');
 	};
 
 	window.addEvent('domready', function()
