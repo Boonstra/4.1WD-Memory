@@ -22,7 +22,7 @@ memory_script = function()
 		// Listeners
 		self.$newGameButton.addEvent('click', function(event){ event.preventDefault(); self.prepareBoard(); });
 
-		self.$board.addEvent('click:relay(.card-container)', function(){ self.handleCardClick(); });
+		self.$board.addEvent('click:relay(.card-container)', function(event, element){ self.handleCardClick(element); });
 	};
 
 	/**
@@ -35,7 +35,57 @@ memory_script = function()
 			$cardFront,
 			$cardBack,
 			cellX,
-			cellY;
+			cellY,
+			alphabet,
+			alphabetCharacter,
+			alphabetCharacterIndex,
+			cardValues,
+			cardValuesCharacterIndex;
+
+		alphabet = [
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z'
+		];
+
+		cardValues = [];
+
+		for (null; cardValues.length < self.cellCountX * self.cellCountY; null)
+		{
+			alphabetCharacterIndex = Math.floor(Math.random() * alphabet.length);
+
+			alphabetCharacter = alphabet[alphabetCharacterIndex];
+
+			// The same character needs to be added twice
+			cardValues.push(alphabetCharacter, alphabetCharacter);
+
+			alphabet.splice(alphabetCharacterIndex, 1);
+		}
+
+		console.log(alphabet, cardValues);
 
 		self.$board.set('html', '');
 
@@ -43,10 +93,14 @@ memory_script = function()
 		{
 			for (cellX = 0; cellX < self.cellCountX; cellX++)
 			{
+				cardValuesCharacterIndex = Math.floor(Math.random() * cardValues.length);
+
 				$cardContainer = new Element('div', { 'class': 'card-container' });
 				$cardFlipper   = new Element('div', { 'class': 'card-flipper' });
-				$cardFront     = new Element('div', { 'class': 'card-front', 'html': 'Front' });
-				$cardBack      = new Element('div', { 'class': 'card-back', 'html': 'Back' });
+				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' });
+				$cardBack      = new Element('div', { 'class': 'card-back', 'html': cardValues[cardValuesCharacterIndex] });
+
+				cardValues.splice(cardValuesCharacterIndex, 1);
 
 				$cardFlipper.adopt($cardFront, $cardBack);
 
@@ -60,13 +114,15 @@ memory_script = function()
 	};
 
 	/**
-	 * Handles a click on a card
+	 * Handles a click on a card.
+	 *
+	 * @param element
 	 */
-	self.handleCardClick = function()
+	self.handleCardClick = function(element)
 	{
+		var $element = $$(element);
 
-
-		console.log('handling card click');
+		$element.addClass('flipped');
 	};
 
 	window.addEvent('domready', function()

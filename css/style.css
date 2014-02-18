@@ -44,9 +44,12 @@ body .wrapper .column2 .board .card-container {
   perspective: 1000;
   margin: 10px;
   float: left;
+  font-size: 2em;
+  text-align: center;
+  line-height: 50px;
 }
-html .wrapper .column2 .board .card-container.hover .card-flipper,
-body .wrapper .column2 .board .card-container.hover .card-flipper {
+html .wrapper .column2 .board .card-container.flipped .card-flipper,
+body .wrapper .column2 .board .card-container.flipped .card-flipper {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
@@ -83,7 +86,6 @@ body .wrapper .column2 .board .card-container .card-back {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
-  background: #fec56c;
   border: 0 #2f313d solid;
   border-right-width: 1px;
   border-bottom-width: 1px;
@@ -95,9 +97,11 @@ body .wrapper .column2 .board .card-container .card-back {
 html .wrapper .column2 .board .card-container .card-front,
 body .wrapper .column2 .board .card-container .card-front {
   z-index: 2;
+  background: #539d84;
 }
 html .wrapper .column2 .board .card-container .card-back,
 body .wrapper .column2 .board .card-container .card-back {
+  background: #fec56c;
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);

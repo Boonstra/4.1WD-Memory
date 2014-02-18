@@ -71,7 +71,12 @@ body
 
 		  float: left;
 
-		  &.hover .card-flipper
+		  font-size: 2em;
+
+		  text-align: center;
+		  line-height: 50px;
+
+		  &.flipped .card-flipper
 		  {
 			.transform(rotateY(180deg));
 		  }
@@ -95,8 +100,6 @@ body
 		  {
 			.backface-visibility(hidden);
 
-			background: @yellow;
-
 			border: 0 @black solid;
 			border-right-width: 1px;
 			border-bottom-width: 1px;
@@ -111,10 +114,14 @@ body
 		  .card-front
 		  {
 			z-index: 2;
+
+			background: @green;
 		  }
 
 		  .card-back
 		  {
+			background: @yellow;
+
 			.transform(rotateY(180deg));
 		  }
 		}
