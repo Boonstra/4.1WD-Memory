@@ -25,31 +25,47 @@ body
 
     margin: 0 auto;
 
-    .column1
+	.box
+	{
+	  margin: 10px 5px;
+	  padding: 10px;
+
+	  .rounded-corners;
+
+	  &.red
+	  {
+		background: @red;
+	  }
+
+	  &.green
+	  {
+		background: @green;
+	  }
+
+	  &.yellow
+	  {
+		background: @yellow;
+	  }
+	}
+
+    .sidebar
     {
       width: 200px;
 
-      margin: 10px 5px;
-      padding: 10px;
-
       float: left;
 
-      background: @yellow;
+	  .option
+	  {
+		margin: 5px 0;
 
-      .rounded-corners;
-
-      .option
-      {
-        margin: 5px 0;
-
-        input
-        {
-          width: 100%;
-        }
-      }
+		input
+		{
+		  width: 100%;
+		}
+	  }
     }
 
-    .column2
+    .main
     {
       width: 760px;
 

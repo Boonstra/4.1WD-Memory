@@ -6,30 +6,44 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 	<script type="text/javascript" src="js/mootools-core-1.4.5-full-nocompat.js"></script>
-	<script type="text/javascript" src="js/min/script.min.js"></script>
+	<script type="text/javascript" src="js/min/memory-script.min.js"></script>
 </head>
 <body>
 
 <div class="wrapper">
 
-	<div class="column1">
+	<div class="sidebar">
 
-		<h3>Memory</h3>
+		<div class="box yellow">
 
-		<div class="option">
-			<button class="new-game-button">New Game</button>
+			<h3>Memory</h3>
+
+			<div class="option">
+				<button class="new-game-button">New Game</button>
+			</div>
+
+			<div class="option">
+				<label for="card-view-time-slider">Reveal card time: <span class="card-view-time-slider-value"></span></label><br />
+				<input type="range" class="card-view-time-slider" id="card-view-time-slider" min="100" max="1000">
+			</div>
+
 		</div>
 
-		<div class="option">
-			<label for="card-view-time-slider">Reveal card time: <span class="card-view-time-slider-value"></span></label><br />
-			<input type="range" class="card-view-time-slider" id="card-view-time-slider" min="1" max="60">
+		<div class="box green">
+
+
+
 		</div>
 
 	</div>
 
-	<div class="column2">
+	<div class="main">
 
-		<div class="board">test</div>
+		<div class="box red">
+
+			<div class="board"></div>
+
+		</div>
 
 	</div>
 

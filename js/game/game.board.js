@@ -4,7 +4,7 @@
 
 	/**
 	 * Prepares the board for a game.
-	 *TODO Add element variables to Game class to be used in this function.
+	 *
 	 * @param cellCountX
 	 * @param cellCountY
 	 */
@@ -53,7 +53,7 @@
 
 		cardValues = [];
 
-		for (null; cardValues.length < self.cellCountX * self.cellCountY; null)
+		for (null; cardValues.length < cellCountX * cellCountY; null)
 		{
 			alphabetCharacterIndex = Math.floor(Math.random() * alphabet.length);
 
@@ -65,11 +65,11 @@
 			alphabet.splice(alphabetCharacterIndex, 1);
 		}
 
-		self.$board.set('html', '');
+		this.$board.set('html', '');
 
-		for (cellY = 0; cellY < self.cellCountY; cellY++)
+		for (cellY = 0; cellY < cellCountY; cellY++)
 		{
-			for (cellX = 0; cellX < self.cellCountX; cellX++)
+			for (cellX = 0; cellX < cellCountX; cellX++)
 			{
 				cardValuesCharacterIndex = Math.floor(Math.random() * cardValues.length);
 
@@ -84,10 +84,10 @@
 
 				$cardContainer.adopt($cardFlipper);
 
-				self.$board.adopt($cardContainer);
+				this.$board.adopt($cardContainer);
 			}
 
-			self.$board.adopt(new Element('div', { 'class': 'clear' }));
+			this.$board.adopt(new Element('div', { 'class': 'clear' }));
 		}
 	};
 })();

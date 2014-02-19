@@ -11,33 +11,47 @@ body .wrapper {
   width: 1000px;
   margin: 0 auto;
 }
-html .wrapper .column1,
-body .wrapper .column1 {
-  width: 200px;
+html .wrapper .box,
+body .wrapper .box {
   margin: 10px 5px;
   padding: 10px;
-  float: left;
-  background: #fec56c;
   border-radius: 5px;
 }
-html .wrapper .column1 .option,
-body .wrapper .column1 .option {
+html .wrapper .box.red,
+body .wrapper .box.red {
+  background: #d28365;
+}
+html .wrapper .box.green,
+body .wrapper .box.green {
+  background: #539d84;
+}
+html .wrapper .box.yellow,
+body .wrapper .box.yellow {
+  background: #fec56c;
+}
+html .wrapper .sidebar,
+body .wrapper .sidebar {
+  width: 200px;
+  float: left;
+}
+html .wrapper .sidebar .option,
+body .wrapper .sidebar .option {
   margin: 5px 0;
 }
-html .wrapper .column1 .option input,
-body .wrapper .column1 .option input {
+html .wrapper .sidebar .option input,
+body .wrapper .sidebar .option input {
   width: 100%;
 }
-html .wrapper .column2,
-body .wrapper .column2 {
+html .wrapper .main,
+body .wrapper .main {
   width: 760px;
   margin: 10px 5px;
   float: left;
   background: #d28365;
   border-radius: 5px;
 }
-html .wrapper .column2 .board .card-container,
-body .wrapper .column2 .board .card-container {
+html .wrapper .main .board .card-container,
+body .wrapper .main .board .card-container {
   -webkit-perspective: 1000;
   -moz-perspective: 1000;
   -ms-perspective: 1000;
@@ -48,25 +62,25 @@ body .wrapper .column2 .board .card-container {
   text-align: center;
   line-height: 50px;
 }
-html .wrapper .column2 .board .card-container.flipped .card-flipper,
-body .wrapper .column2 .board .card-container.flipped .card-flipper {
+html .wrapper .main .board .card-container.flipped .card-flipper,
+body .wrapper .main .board .card-container.flipped .card-flipper {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-html .wrapper .column2 .board .card-container,
-body .wrapper .column2 .board .card-container,
-html .wrapper .column2 .board .card-container .card-front,
-body .wrapper .column2 .board .card-container .card-front,
-html .wrapper .column2 .board .card-container .card-back,
-body .wrapper .column2 .board .card-container .card-back {
+html .wrapper .main .board .card-container,
+body .wrapper .main .board .card-container,
+html .wrapper .main .board .card-container .card-front,
+body .wrapper .main .board .card-container .card-front,
+html .wrapper .main .board .card-container .card-back,
+body .wrapper .main .board .card-container .card-back {
   width: 50px;
   height: 50px;
 }
-html .wrapper .column2 .board .card-container .card-flipper,
-body .wrapper .column2 .board .card-container .card-flipper {
+html .wrapper .main .board .card-container .card-flipper,
+body .wrapper .main .board .card-container .card-flipper {
   -webkit-transition: 0.6s;
   -moz-transition: 0.6s;
   -ms-transition: 0.6s;
@@ -78,10 +92,10 @@ body .wrapper .column2 .board .card-container .card-flipper {
   transform-style: preserve-3d;
   position: relative;
 }
-html .wrapper .column2 .board .card-container .card-front,
-body .wrapper .column2 .board .card-container .card-front,
-html .wrapper .column2 .board .card-container .card-back,
-body .wrapper .column2 .board .card-container .card-back {
+html .wrapper .main .board .card-container .card-front,
+body .wrapper .main .board .card-container .card-front,
+html .wrapper .main .board .card-container .card-back,
+body .wrapper .main .board .card-container .card-back {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -94,13 +108,13 @@ body .wrapper .column2 .board .card-container .card-back {
   top: 0;
   left: 0;
 }
-html .wrapper .column2 .board .card-container .card-front,
-body .wrapper .column2 .board .card-container .card-front {
+html .wrapper .main .board .card-container .card-front,
+body .wrapper .main .board .card-container .card-front {
   z-index: 2;
   background: #539d84;
 }
-html .wrapper .column2 .board .card-container .card-back,
-body .wrapper .column2 .board .card-container .card-back {
+html .wrapper .main .board .card-container .card-back,
+body .wrapper .main .board .card-container .card-back {
   background: #fec56c;
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
