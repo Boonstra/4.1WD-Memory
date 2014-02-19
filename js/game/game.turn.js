@@ -1,6 +1,6 @@
 (function()
 {
-	var self = memory_script;
+	var self = memoryScript;
 
 	/**
 	 *

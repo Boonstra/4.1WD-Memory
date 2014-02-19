@@ -18,20 +18,29 @@
 
 			<h3>Memory</h3>
 
-			<div class="option">
+			<div class="row">
 				<button class="new-game-button">New Game</button>
 			</div>
 
-			<div class="option">
-				<label for="card-view-time-slider">Reveal card time: <span class="card-view-time-slider-value"></span></label><br />
-				<input type="range" class="card-view-time-slider" id="card-view-time-slider" min="100" max="1000">
+			<div class="row">
+				<label for="turn-time-slider">Turn time: <span class="turn-time-slider-value">5</span></label><br />
+				<input type="range" class="turn-time-slider" id="turn-time-slider" value="5000" min="1000" max="10000">
 			</div>
 
 		</div>
 
 		<div class="box green">
 
+			<h3><span class="current-player-name"></span>'s turn</h3>
 
+			<div class="row player-scores"></div>
+
+		</div>
+
+		<div class="box yellow loading-bar-container">
+
+			<div class="box black loading-bar-background"></div>
+			<div class="box red loading-bar-progress"></div>
 
 		</div>
 
@@ -39,7 +48,7 @@
 
 	<div class="main">
 
-		<div class="box red">
+		<div class="box no-padding red">
 
 			<div class="board"></div>
 

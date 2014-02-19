@@ -11,6 +11,10 @@ body .wrapper {
   width: 1000px;
   margin: 0 auto;
 }
+html .wrapper h3,
+body .wrapper h3 {
+  text-align: center;
+}
 html .wrapper .box,
 body .wrapper .box {
   margin: 10px 5px;
@@ -29,22 +33,45 @@ html .wrapper .box.yellow,
 body .wrapper .box.yellow {
   background: #fec56c;
 }
+html .wrapper .box.black,
+body .wrapper .box.black {
+  background: #2f313d;
+}
+html .wrapper .box.no-padding,
+body .wrapper .box.no-padding {
+  padding: 0;
+}
 html .wrapper .sidebar,
 body .wrapper .sidebar {
-  width: 200px;
+  width: 300px;
   float: left;
 }
-html .wrapper .sidebar .option,
-body .wrapper .sidebar .option {
+html .wrapper .sidebar .row,
+body .wrapper .sidebar .row {
   margin: 5px 0;
+  text-align: center;
 }
-html .wrapper .sidebar .option input,
-body .wrapper .sidebar .option input {
+html .wrapper .sidebar .row input,
+body .wrapper .sidebar .row input {
   width: 100%;
+}
+html .wrapper .sidebar .loading-bar-container,
+body .wrapper .sidebar .loading-bar-container {
+  position: relative;
+}
+html .wrapper .sidebar .loading-bar-container .loading-bar-progress,
+body .wrapper .sidebar .loading-bar-container .loading-bar-progress {
+  width: 0px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 20px;
+  left: 14px;
 }
 html .wrapper .main,
 body .wrapper .main {
-  width: 760px;
+  width: 660px;
   margin: 10px 5px;
   float: left;
   background: #d28365;

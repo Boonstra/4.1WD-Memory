@@ -1,6 +1,6 @@
 (function()
 {
-	var self = memory_script;
+	var self = memoryScript;
 
 	/**
 	 * Prepares the board for a game.
@@ -53,7 +53,7 @@
 
 		cardValues = [];
 
-		for (null; cardValues.length < cellCountX * cellCountY; null)
+		while (cardValues.length < cellCountX * cellCountY)
 		{
 			alphabetCharacterIndex = Math.floor(Math.random() * alphabet.length);
 
