@@ -10,8 +10,7 @@
 	 */
 	self.Game.prototype.prepareBoard = function(cellCountX, cellCountY)
 	{
-		var $dimensionsCard,
-			$cardContainer,
+		var $cardContainer,
 			$cardFlipper,
 			$cardFront,
 			$cardBack,
@@ -79,7 +78,7 @@
 				// Set up card parts
 				$cardContainer = new Element('div', { 'class': 'card-container' });
 				$cardFlipper   = new Element('div', { 'class': 'card-flipper' });
-				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' + cardValues[cardValuesCharacterIndex] });
+				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' });
 				$cardBack      = new Element('div', { 'class': 'card-back', 'html': cardValues[cardValuesCharacterIndex] });
 
 				// Remove character from card values

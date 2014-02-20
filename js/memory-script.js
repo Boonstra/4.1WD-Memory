@@ -31,4 +31,5 @@ memoryScript = function()
 // @codekit-append game/game.constructor.js
 // @codekit-append game/game.board.js
 // @codekit-append game/game.turn.js
+// @codekit-append game/game.end.js
 // @codekit-append player/player.constructor.js
