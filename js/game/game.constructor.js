@@ -11,12 +11,13 @@
 	self.Game = function(cellCountX, cellCountY)
 	{
 		// Variables
-		this.cellCountX         = cellCountX;
-		this.cellCountY         = cellCountY;
-		this.players            = [new self.Player('Player 1'), new self.Player('Player 2')];
-		this.currentPlayerIndex = Math.floor(Math.random() * this.players.length);
-		this.turnedCardElements = [];
-		this.turnTimer          = null;
+		this.cellCountX          = cellCountX;
+		this.cellCountY          = cellCountY;
+		this.players             = [new self.Player('Player 1'), new self.Player('Player 2')];
+		this.currentPlayerIndex  = Math.floor(Math.random() * this.players.length);
+		this.turnedCardElements  = [];
+		this.turnTimer           = null;
+		this.loadingBarAnimation = null;
 
 		// Elements
 		this.$board                  = $$('.board');
@@ -76,7 +77,16 @@
 			// Check if card values match
 			if (this.turnedCardElements[0].getElement('.card-back')[0].get('text') == this.turnedCardElements[1].getElement('.card-back')[0].get('text'))
 			{
+				this.turnedCardElements = [];
+
 				this.players[this.currentPlayerIndex].incrementScore();
+
+				if (this.loadingBarAnimation != null)
+				{
+					this.loadingBarAnimation.cancel();
+
+					this.$loadingBarProgress.setStyle('width', 0);
+				}
 
 				this.nextTurn();
 			}
@@ -91,7 +101,7 @@
 		this.resetTurnTimer();
 
 		// Animate loading bar
-		new Fx.Tween(this.$loadingBarProgress[0], {
+		this.loadingBarAnimation = new Fx.Tween(this.$loadingBarProgress[0], {
 			duration  : this.getTurnTime(),
 			transition: 'linear',
 			property  : 'width',

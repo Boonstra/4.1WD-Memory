@@ -75,7 +75,7 @@
 
 				$cardContainer = new Element('div', { 'class': 'card-container' });
 				$cardFlipper   = new Element('div', { 'class': 'card-flipper' });
-				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' });
+				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' + cardValues[cardValuesCharacterIndex] });
 				$cardBack      = new Element('div', { 'class': 'card-back', 'html': cardValues[cardValuesCharacterIndex] });
 
 				cardValues.splice(cardValuesCharacterIndex, 1);
