@@ -23,7 +23,7 @@
 			</div>
 
 			<div class="row">
-				<label for="turn-time-slider">Turn time: <span class="turn-time-slider-value">5</span></label><br />
+				<label for="turn-time-slider">Turn time: <span class="turn-time-slider-value">5</span> seconds</label><br />
 				<input type="range" class="turn-time-slider" id="turn-time-slider" value="5000" min="1000" max="10000">
 			</div>
 
@@ -48,9 +48,37 @@
 
 	<div class="main">
 
-		<div class="box no-padding red">
+		<div class="box red board"></div>
 
-			<div class="board"></div>
+		<div class="box blue end-of-game-screen">
+
+			<div class="end-of-game-screen-content">
+
+				<h2>Congratulations <span class="winner-player-name"></span>!</h2>
+
+				<div class="total-play-time-container">
+
+					<strong>You've won in</strong><br />
+
+					<span class="total-play-time"></span><br/>
+
+					<strong>seconds</strong>
+
+				</div>
+
+				<div class="total-score-container">
+
+					<strong>With</strong><br />
+
+					<span class="total-score"></span><br/>
+
+					<strong>points</strong>
+
+				</div>
+
+				<div class="clear"></div>
+
+			</div>
 
 		</div>
 

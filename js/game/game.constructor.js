@@ -13,26 +13,38 @@
 		// Variables
 		this.cellCountX          = cellCountX;
 		this.cellCountY          = cellCountY;
-		this.players             = [new self.Player('Player 1'), new self.Player('Player 2')];
-		this.currentPlayerIndex  = Math.floor(Math.random() * this.players.length);
+		this.players             = [];
+		this.currentPlayerIndex  = 0;
 		this.turnedCardElements  = [];
 		this.turnTimer           = null;
 		this.loadingBarAnimation = null;
+		this.startTime           = Math.round((new Date()).getTime() / 1000);
 
 		// Elements
 		this.$board                  = $$('.board');
 		this.$turnTimeSlider         = $$('.turn-time-slider');
 		this.$turnTimeSliderValue    = $$('.turn-time-slider-value');
 		this.$currentPlayerNameField = $$('.current-player-name');
+		this.$playerScores           = $$('.player-scores');
 		this.$loadingBarBackground   = $$('.loading-bar-background');
 		this.$loadingBarProgress     = $$('.loading-bar-progress');
+		this.$endOfGameScreen        = $$('.end-of-game-screen');
 
 		// Events
 		this.$turnTimeSlider.addEvent('change', (function(){ this.handleTurnTimeSliderChange(); }).bind(this));
 		this.$board.addEvent('click:relay(.card-container)', (function(event, element){ this.handleCardClick(element); }).bind(this));
 
 		// Start up
-		this.nextTurn();
+		this.$playerScores.set('text', '');
+
+		this.players.push(new self.Player('Player 1'));
+		this.players.push(new self.Player('Player 2'));
+
+		this.currentPlayerIndex = Math.floor(Math.random() * this.players.length);
+
+		this.$endOfGameScreen.setStyle('height', 0);
+
+		this.nextTurn(true);
 		this.prepareBoard(this.cellCountX, this.cellCountY);
 	};
 
@@ -86,7 +98,15 @@
 					this.loadingBarAnimation.cancel();
 				}
 
-				this.nextTurn();
+				// Check if end of game state was reached
+				if (this.isEndOfGame())
+				{
+					this.handleEndOfGame();
+
+					return;
+				}
+
+				this.nextTurn(false);
 			}
 		}
 	};
@@ -110,7 +130,7 @@
 		// Go to next turn when the turn time runs out
 		this.turnTimer = setTimeout((function()
 		{
-			this.nextTurn();
+			this.nextTurn(true);
 		}).bind(this), this.getTurnTime())
 	};
 
@@ -119,6 +139,11 @@
 	 */
 	self.Game.prototype.resetTurnTimer = function()
 	{
+		if (this.loadingBarAnimation != null)
+		{
+			this.loadingBarAnimation.cancel();
+		}
+
 		clearTimeout(this.turnTimer);
 
 		this.turnTimer = null;
@@ -126,20 +151,28 @@
 
 	/**
 	 * Go to next turn.
+	 *
+	 * @param nextPlayer
 	 */
-	self.Game.prototype.nextTurn = function()
+	self.Game.prototype.nextTurn = function(nextPlayer)
 	{
-		var nextPlayerIndex = this.currentPlayerIndex + 1,
+		var nextPlayerIndex = this.currentPlayerIndex,
 			elementIndex    = 0;
 
-		if (nextPlayerIndex >= this.players.length)
+		// Set next player if next player is true
+		if (nextPlayer)
 		{
-			nextPlayerIndex = 0;
+			nextPlayerIndex += 1;
+
+			if (nextPlayerIndex >= this.players.length)
+			{
+				nextPlayerIndex = 0;
+			}
+
+			this.$currentPlayerNameField.set('text', this.players[nextPlayerIndex].name);
+
+			this.currentPlayerIndex = nextPlayerIndex;
 		}
-
-		this.$currentPlayerNameField.set('text', this.players[nextPlayerIndex].name);
-
-		this.currentPlayerIndex = nextPlayerIndex;
 
 		// Flip cards that haven't been matched yet
 		for (elementIndex; elementIndex < this.turnedCardElements.length; elementIndex++)
@@ -167,5 +200,78 @@
 		}
 
 		return turnTime;
+	};
+
+	/**
+	 * Checks if end of game state is reached.
+	 *
+	 * @return boolean
+	 */
+	self.Game.prototype.isEndOfGame = function()
+	{
+		return this.$board.getElements('.card-container.flipped')[0].length >= this.cellCountX * this.cellCountY;
+	};
+
+	/**
+	 * Handles the end of the game.
+	 */
+	self.Game.prototype.handleEndOfGame = function()
+	{
+		var $endOfGameScreenContent       = this.$endOfGameScreen.getElement('.end-of-game-screen-content'),
+			$winnerPlayerNameField        = this.$endOfGameScreen.getElement('.winner-player-name'),
+			$totalPlayTimeContainer       = this.$endOfGameScreen.getElement('.total-play-time-container'),
+			$totalPlayTimeField           = $totalPlayTimeContainer.getElement('.total-play-time'),
+			$totalScoreContainer          = this.$endOfGameScreen.getElement('.total-score-container'),
+			$totalScoreField              = $totalScoreContainer.getElement('.total-score'),
+			highestScore                  = -1,
+			playersWithHighestScore       = [],
+			playersWithHighestScoreString = '',
+			playerIndex;
+
+		// Determine winner
+		for (playerIndex = 0; playerIndex < this.players.length; playerIndex++)
+		{
+			if (this.players[playerIndex].score > highestScore)
+			{
+				playersWithHighestScore = [ this.players[playerIndex] ];
+
+				highestScore = this.players[playerIndex].score;
+			}
+			else if (this.players[playerIndex].score == highestScore)
+			{
+				playersWithHighestScore.push(this.players[playerIndex]);
+			}
+		}
+
+		// Put winning player's names into the congratulations message
+		for (playerIndex = 0; playerIndex < playersWithHighestScore.length; playerIndex++)
+		{
+			playersWithHighestScoreString += playersWithHighestScore[playerIndex].name;
+
+			if (playerIndex < playersWithHighestScore.length - 1)
+			{
+				playersWithHighestScoreString += ' and ';
+
+				continue;
+			}
+
+			break;
+		}
+
+		$winnerPlayerNameField.set('text', playersWithHighestScoreString);
+		$totalPlayTimeField.set('text', Math.round((((new Date).getTime() / 1000) - this.startTime) * 100) / 100);
+		$totalScoreField.set('text', highestScore);
+
+		this.$endOfGameScreen.setStyle('width' , this.$board.getSize()[0].x);
+		this.$endOfGameScreen.setStyle('height', this.$board.getSize()[0].y);
+		this.$endOfGameScreen.setStyle('top'   , -(this.$board.getSize()[0].y));
+
+		$endOfGameScreenContent.setStyle('margin-top', (this.$board.getSize()[0].y - $endOfGameScreenContent.getSize()[0].y) / 2);
+
+		new Fx.Tween(this.$endOfGameScreen[0], {
+			duration  : 2000,
+			transition: 'bounce:out',
+			property  : 'top'
+		}).start(-this.$board.getSize()[0].y, 0);
 	};
 })();

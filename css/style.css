@@ -33,13 +33,13 @@ html .wrapper .box.yellow,
 body .wrapper .box.yellow {
   background: #fec56c;
 }
+html .wrapper .box.blue,
+body .wrapper .box.blue {
+  background: #427383;
+}
 html .wrapper .box.black,
 body .wrapper .box.black {
   background: #2f313d;
-}
-html .wrapper .box.no-padding,
-body .wrapper .box.no-padding {
-  padding: 0;
 }
 html .wrapper .sidebar,
 body .wrapper .sidebar {
@@ -71,10 +71,10 @@ body .wrapper .sidebar .loading-bar-container .loading-bar-progress {
 }
 html .wrapper .main,
 body .wrapper .main {
+  position: relative;
   width: 660px;
-  margin: 10px 5px;
   float: left;
-  background: #d28365;
+  overflow: hidden;
   border-radius: 5px;
 }
 html .wrapper .main .board .card-container,
@@ -87,7 +87,7 @@ body .wrapper .main .board .card-container {
   float: left;
   font-size: 2em;
   text-align: center;
-  line-height: 50px;
+  line-height: 137px;
 }
 html .wrapper .main .board .card-container.flipped .card-flipper,
 body .wrapper .main .board .card-container.flipped .card-flipper {
@@ -103,8 +103,8 @@ html .wrapper .main .board .card-container .card-front,
 body .wrapper .main .board .card-container .card-front,
 html .wrapper .main .board .card-container .card-back,
 body .wrapper .main .board .card-container .card-back {
-  width: 142px;
-  height: 142px;
+  width: 137px;
+  height: 137px;
 }
 html .wrapper .main .board .card-container .card-flipper,
 body .wrapper .main .board .card-container .card-flipper {
@@ -148,6 +148,31 @@ body .wrapper .main .board .card-container .card-back {
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+html .wrapper .main .end-of-game-screen,
+body .wrapper .main .end-of-game-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+html .wrapper .main .end-of-game-screen .total-score,
+body .wrapper .main .end-of-game-screen .total-score,
+html .wrapper .main .end-of-game-screen .total-play-time,
+body .wrapper .main .end-of-game-screen .total-play-time {
+  line-height: 1.5em;
+  font-size: 2em;
+  color: #fec56c;
+}
+html .wrapper .main .end-of-game-screen .total-score-container,
+body .wrapper .main .end-of-game-screen .total-score-container,
+html .wrapper .main .end-of-game-screen .total-play-time-container,
+body .wrapper .main .end-of-game-screen .total-play-time-container {
+  float: left;
+  width: 50%;
 }
 .clear {
   clear: both;

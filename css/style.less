@@ -2,6 +2,7 @@
 @yellow: #fec56c;
 @red: #d28365;
 @green: #539d84;
+@blue: #427383;
 
 @white     : #fff;
 @light-grey: #eee;
@@ -52,14 +53,14 @@ body
 		background: @yellow;
 	  }
 
+	  &.blue
+	  {
+		background: @blue;
+	  }
+
 	  &.black
 	  {
 		background: @black;
-	  }
-
-	  &.no-padding
-	  {
-		padding: 0;
 	  }
 	}
 
@@ -103,13 +104,13 @@ body
 
     .main
     {
-      width: 660px;
+	  position: relative;
 
-      margin: 10px 5px;
+      width: 660px;
 
       float: left;
 
-      background: @red;
+	  overflow: hidden;
 
       .rounded-corners;
 
@@ -126,7 +127,7 @@ body
 		  font-size: 2em;
 
 		  text-align: center;
-		  line-height: 50px;
+		  line-height: 137px;
 
 		  &.flipped .card-flipper
 		  {
@@ -135,8 +136,8 @@ body
 
 		  &, .card-front, .card-back
 		  {
-			width: 142px;
-			height: 142px;
+			width: 137px;
+			height: 137px;
 		  }
 
 		  .card-flipper
@@ -178,6 +179,40 @@ body
 		  }
 		}
       }
+
+	  .end-of-game-screen
+	  {
+		position: absolute;
+
+		top: 0;
+		left: 0;
+
+		height: 0;
+
+		padding: 0;
+
+		overflow: hidden;
+
+		text-align: center;
+
+		.total-score,
+		.total-play-time
+		{
+		  line-height: 1.5em;
+
+		  font-size: 2em;
+
+		  color: @yellow;
+		}
+
+		.total-score-container,
+		.total-play-time-container
+		{
+		  float: left;
+
+		  width: 50%;
+		}
+	  }
     }
   }
 }

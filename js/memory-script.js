@@ -7,7 +7,7 @@ memoryScript = function()
 	 */
 	self.init = function()
 	{
-		$$('.new-game-button').addEvent('click', function(event){ event.preventDefault(); self.startNewGame(); });
+		$$(document).addEvent('click:relay(.new-game-button)', function(event){ event.preventDefault(); self.startNewGame(); });
 
 		self.startNewGame();
 	};
