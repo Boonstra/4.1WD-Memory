@@ -10,7 +10,8 @@
 	 */
 	self.Game.prototype.prepareBoard = function(cellCountX, cellCountY)
 	{
-		var $cardContainer,
+		var $dimensionsCard,
+			$cardContainer,
 			$cardFlipper,
 			$cardFront,
 			$cardBack,
@@ -53,6 +54,7 @@
 
 		cardValues = [];
 
+		// Build a selection of characters to be used as cards.
 		while (cardValues.length < cellCountX * cellCountY)
 		{
 			alphabetCharacterIndex = Math.floor(Math.random() * alphabet.length);
@@ -67,23 +69,25 @@
 
 		this.$board.set('html', '');
 
+		// Create cards
 		for (cellY = 0; cellY < cellCountY; cellY++)
 		{
 			for (cellX = 0; cellX < cellCountX; cellX++)
 			{
 				cardValuesCharacterIndex = Math.floor(Math.random() * cardValues.length);
 
+				// Set up card parts
 				$cardContainer = new Element('div', { 'class': 'card-container' });
 				$cardFlipper   = new Element('div', { 'class': 'card-flipper' });
 				$cardFront     = new Element('div', { 'class': 'card-front', 'html': '*' + cardValues[cardValuesCharacterIndex] });
 				$cardBack      = new Element('div', { 'class': 'card-back', 'html': cardValues[cardValuesCharacterIndex] });
 
+				// Remove character from card values
 				cardValues.splice(cardValuesCharacterIndex, 1);
 
+				// Build card and add it to the board
 				$cardFlipper.adopt($cardFront, $cardBack);
-
 				$cardContainer.adopt($cardFlipper);
-
 				this.$board.adopt($cardContainer);
 			}
 

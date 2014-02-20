@@ -103,8 +103,8 @@ html .wrapper .main .board .card-container .card-front,
 body .wrapper .main .board .card-container .card-front,
 html .wrapper .main .board .card-container .card-back,
 body .wrapper .main .board .card-container .card-back {
-  width: 50px;
-  height: 50px;
+  width: 142px;
+  height: 142px;
 }
 html .wrapper .main .board .card-container .card-flipper,
 body .wrapper .main .board .card-container .card-flipper {

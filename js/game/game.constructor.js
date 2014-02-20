@@ -84,8 +84,6 @@
 				if (this.loadingBarAnimation != null)
 				{
 					this.loadingBarAnimation.cancel();
-
-					this.$loadingBarProgress.setStyle('width', 0);
 				}
 
 				this.nextTurn();
@@ -105,7 +103,8 @@
 			duration  : this.getTurnTime(),
 			transition: 'linear',
 			property  : 'width',
-			onComplete: (function(){ this.$loadingBarProgress.setStyle('width', 0); }).bind(this)
+			onComplete: (function(){ this.$loadingBarProgress.setStyle('width', 0); }).bind(this),
+			onCancel  : (function(){ this.$loadingBarProgress.setStyle('width', 0); }).bind(this)
 		}).start(0, this.$loadingBarBackground.getSize()[0].x + 2);
 
 		// Go to next turn when the turn time runs out

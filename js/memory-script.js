@@ -7,6 +7,16 @@ memoryScript = function()
 	 */
 	self.init = function()
 	{
+		$$('.new-game-button').addEvent('click', function(event){ event.preventDefault(); self.startNewGame(); });
+
+		self.startNewGame();
+	};
+
+	/**
+	 * Starts a new game
+	 */
+	self.startNewGame = function()
+	{
 		self.currentGame = new self.Game(4, 4);
 	};
 
